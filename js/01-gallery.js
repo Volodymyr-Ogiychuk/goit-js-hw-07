@@ -25,10 +25,6 @@ galleryRef.insertAdjacentHTML('beforeend', markup.join(' '));
 
 galleryRef.addEventListener('click', event => {
   event.preventDefault();
-  console.log('target', event.target);
-  
-  console.log(event.target.getAttribute("data-source"));
-
 
   const instance = basicLightbox.create(`
     <img src="${event.target.getAttribute("data-source")}">
