@@ -25,17 +25,29 @@ galleryRef.insertAdjacentHTML('beforeend', markup.join(' '));
 
 galleryRef.addEventListener('click', event => {
   event.preventDefault();
+  if (event.target.nodeName === 'DIV') {
+    return
+  }
 
   const instance = basicLightbox.create(`
     <img src="${event.target.getAttribute("data-source")}">
 `);
   instance.show();
 
+  const modalRef = document.querySelector('div.basicLightbox');
+  modalRef.addEventListener('click', closeNremove => {
+
+    galleryRef.removeEventListener("click", event);
+    modalRef.removeEventListener("click", event);
+    console.log("click event listener was removed from btn");
+  })
+
   document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
       instance.close();
       document.removeEventListener("keydown", event);
+      console.log("keydown event listener was removed from btn");
     }
   
   })
