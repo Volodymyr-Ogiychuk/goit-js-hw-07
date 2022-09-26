@@ -22,6 +22,7 @@ galleryRef.insertAdjacentHTML('beforeend', markup.join(' '));
 
 galleryRef.addEventListener('click', event => {
   event.preventDefault();
+  
 
     var lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',

@@ -38,28 +38,23 @@ galleryRef.addEventListener('click', event => {
   
   modalRef.addEventListener('click', event => {
     
-    closeListeners();
-    
+    galleryRef.removeEventListener("click", event);
+    modalRef.removeEventListener("click", event);
+    console.log("click event listener was removed");
   })
 
+  console.log("click event listener was CREATED");
 
   document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
       instance.close();
-      closeListeners()
-    
+      document.removeEventListener("keydown", event);
+      console.log("keydown event listener was removed");
     }
   
   })
 
-  function closeListeners() {
-    galleryRef.removeEventListener("click", event);
-    modalRef.removeEventListener("click", event);
-    document.removeEventListener("keydown", event);
-    console.log("All event listeners was removed");
-  }
-
 });
 
-
+console.log("keydown event listener was CREATED");
