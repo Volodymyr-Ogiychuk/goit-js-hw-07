@@ -61,5 +61,3 @@ galleryRef.addEventListener('click', event => {
   }
 
 });
-
-

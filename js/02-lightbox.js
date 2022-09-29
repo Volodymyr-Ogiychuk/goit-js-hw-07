@@ -11,7 +11,7 @@ galleryItems.forEach(({ preview, original, description }) => {
     markup.push(`
 
     <li class="gallery__item">
-        <a class="gallery__item" href="${original}" data-caption="Описание">
+        <a class="gallery__item" href="${original}">
           <img class="gallery__image" src="${preview}" alt="${description}" />
         </a>  
     </li>
@@ -19,14 +19,14 @@ galleryItems.forEach(({ preview, original, description }) => {
 })
 
 galleryRef.insertAdjacentHTML('beforeend', markup.join(' '));
-
-galleryRef.addEventListener('click', event => {
-  event.preventDefault();
+const itemsRef = document.querySelectorAll('li');
+itemsRef.forEach(element => {
+  element.style.listStyleType = 'none';
+})
   
 
     var lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionDelay: 250,
+        
     });
-
-});
