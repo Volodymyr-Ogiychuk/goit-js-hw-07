@@ -1,7 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const galleryRef = document.querySelector('div.gallery');
+const galleryRef = document.querySelector('.gallery');
 const markup = [];
 
 galleryItems.forEach(({ preview, original, description }) => {
@@ -31,33 +31,23 @@ galleryRef.addEventListener('click', event => {
 
   const instance = basicLightbox.create(`
     <img src="${event.target.getAttribute("data-source")}">
-`);
-  instance.show();
+`, {onClose: (instance) => {galleryRef.removeEventListener("keydown", clickEsc)}
+});
+  instance.show();  
 
-  const modalRef = document.querySelector('div.basicLightbox');
+  galleryRef.addEventListener("keydown", clickEsc);
   
-  modalRef.addEventListener('click', event => {
+  function clickEsc(event) {if (event.key === "Escape") {
+    instance.close();
+      
     
-    closeListeners();
-    
-  })
+    }}
 
-
-  document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-      instance.close();
-      closeListeners()
-    
-    }
-  
-  })
-
-  function closeListeners() {
-    galleryRef.removeEventListener("click", event);
-    modalRef.removeEventListener("click", event);
-    document.removeEventListener("keydown", event);
-    console.log("All event listeners was removed");
-  }
+  // function closeListeners() {
+  //   galleryRef.removeEventListener("click", event);
+  //   modalRef.removeEventListener("click", event);
+  //   document.removeEventListener("keydown");
+  //   console.log("All event listeners was removed");
+  // }
 
 });
